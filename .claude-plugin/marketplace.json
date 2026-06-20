@@ -1,0 +1,11 @@
+{
+  "name": "ios-skills",
+  "owner": { "name": "Shohjahon Rakhmatov" },
+  "plugins": [
+    {
+      "name": "swiftui-app-architecture",
+      "source": "./plugins/swiftui-app-architecture",
+      "description": "Conventions and architecture for building native SwiftUI iOS apps."
+    }
+  ]
+}

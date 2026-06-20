@@ -1,0 +1,6 @@
+{
+  "name": "swiftui-app-architecture",
+  "description": "Conventions and architecture for building native SwiftUI iOS apps: structure, design tokens, Observable state, a generic networking layer, navigation, Codable models, and a Foundation-clean testable core.",
+  "version": "1.0.0",
+  "author": { "name": "Shohjahon Rakhmatov" }
+}
