@@ -6,6 +6,11 @@
       "name": "swiftui-app-architecture",
       "source": "./plugins/swiftui-app-architecture",
       "description": "Conventions and architecture for building native SwiftUI iOS apps."
+    },
+    {
+      "name": "hormozi-grand-slam-offer",
+      "source": "./plugins/hormozi-grand-slam-offer",
+      "description": "Craft or critique a Grand Slam Offer using Alex Hormozi's $100M Offers frameworks (Value Equation, Value Stack, pricing, guarantees, bonuses, MAGIC naming)."
     }
   ]
 }

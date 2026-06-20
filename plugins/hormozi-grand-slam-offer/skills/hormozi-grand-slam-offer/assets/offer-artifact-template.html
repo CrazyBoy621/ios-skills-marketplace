@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{OFFER_NAME}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f3;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --accent: #c4452f;
+    --accent-soft: #fde8e3;
+    --gold: #b8860b;
+    --rule: #e8e3d6;
+    --card: #fffdf7;
+    --good: #2d7a4f;
+    --bad: #c4452f;
+    --warn: #b8860b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    margin: 0;
+    padding: 0;
+  }
+  .container { max-width: 920px; margin: 0 auto; padding: 60px 40px 80px; }
+  [contenteditable]:focus { outline: 2px dashed var(--accent); outline-offset: 4px; border-radius: 4px; }
+  [contenteditable]:hover { background: rgba(196, 69, 47, 0.04); }
+  .label {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 700; line-height: 1.15; margin: 0; }
+  h1 { font-size: clamp(36px, 6vw, 58px); margin-bottom: 14px; letter-spacing: -0.02em; }
+  h2 { font-size: 28px; margin-bottom: 8px; letter-spacing: -0.01em; }
+  h3 { font-size: 19px; margin-bottom: 6px; font-weight: 600; }
+  .hero { border-bottom: 1px solid var(--rule); padding-bottom: 40px; margin-bottom: 48px; }
+  .tagline {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 21px;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .avatar-line {
+    font-size: 14px;
+    color: var(--ink-muted);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .avatar-line strong { color: var(--ink); font-weight: 600; }
+  .avatar-line::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+  section { margin-bottom: 56px; }
+  .dream-callout {
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    padding: 28px 32px;
+    border-radius: 0 8px 8px 0;
+  }
+  .dream-callout .text {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 11px;
+    color: var(--ink-muted);
+    font-weight: 600;
+    border-bottom: 2px solid var(--ink);
+  }
+  .stack-name { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+  .stack-desc { color: var(--ink-soft); font-size: 13px; line-height: 1.5; }
+  .stack-value { font-family: 'Fraunces', Georgia, serif; font-weight: 700; font-size: 17px; color: var(--ink); white-space: nowrap; }
+  .stack-reasoning { display: block; color: var(--ink-muted); font-size: 11px; font-weight: 400; font-family: 'Inter', sans-serif; margin-top: 4px; font-style: italic; }
+  .total-row td {
+    border-bottom: none;
+    border-top: 2px solid var(--ink);
+    padding-top: 18px;
+    font-weight: 700;
+  }
+  .total-label { text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; }
+  .total-amount { font-family: 'Fraunces', Georgia, serif; font-size: 24px; color: var(--accent); }
+  .pricing-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 32px;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+  }
+  .pricing-block .stack-side .num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 30px;
+    color: var(--ink-muted);
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+    margin-bottom: 4px;
+  }
+  .pricing-block .price-side .num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .pricing-block .terms { font-size: 13px; color: var(--ink-soft); margin-top: 8px; }
+  .pricing-block .rationale {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--rule);
+    padding-top: 20px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.55;
+  }
+  .guarantee-block {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 36px 40px;
+    border-radius: 8px;
+  }
+  .guarantee-block .label { color: #ffb8a8; }
+  .guarantee-block h2 { color: var(--bg); font-size: 24px; margin-bottom: 12px; }
+  .guarantee-block .formula {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.4;
+    font-weight: 500;
+  }
+  .guarantee-block .type-tag {
+    display: inline-block;
+    border: 1px solid #ffb8a8;
+    color: #ffb8a8;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+  .pressure-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .pressure-card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    padding: 24px 28px;
+    border-radius: 8px;
+  }
+  .pressure-card .type {
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .pressure-card .text {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .bonus-row td:first-child { width: 32%; }
+  .bonus-tag {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 6px;
+  }
+  .ve-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .ve-cell {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 18px 16px;
+    text-align: center;
+  }
+  .ve-cell .name { font-size: 12px; color: var(--ink-muted); font-weight: 500; min-height: 30px; line-height: 1.3; margin-bottom: 8px; }
+  .ve-cell .arrow { font-size: 10px; color: var(--ink-muted); margin-bottom: 4px; }
+  .ve-cell .score {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .ve-cell.s-1 .score { color: var(--good); }
+  .ve-cell.s-half .score { color: var(--warn); }
+  .ve-cell.s-0 .score { color: var(--bad); }
+  .ve-total {
+    text-align: center;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+  }
+  .ve-total .num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .ve-total .grade { font-size: 13px; color: var(--ink-muted); margin-top: 4px; }
+  .verdict {
+    margin-top: 12px;
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .verdict-good { background: #e6f4ec; color: #1a5d36; }
+  .verdict-mid { background: #fdf5e1; color: #6b4f00; }
+  .verdict-bad { background: var(--accent-soft); color: #7a2a1a; }
+  .fixes-list {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    padding: 24px 28px;
+    border-radius: 0 8px 8px 0;
+  }
+  .fixes-list ol { margin: 0; padding-left: 24px; }
+  .fixes-list li { margin-bottom: 14px; line-height: 1.55; }
+  .fixes-list li:last-child { margin-bottom: 0; }
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  .compare-col {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    padding: 20px 24px;
+    border-radius: 8px;
+  }
+  .compare-col.original { border-color: #e8c8c0; background: #fdf3f0; }
+  .compare-col h4 {
+    margin: 0 0 12px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+  .compare-col.original h4 { color: var(--bad); }
+  .compare-col.rewrite h4 { color: var(--good); }
+  .compare-col p { font-size: 14px; line-height: 1.55; margin: 0; }
+  body[data-mode="craft"] .critique-only { display: none; }
+  body[data-mode="critique"] .craft-only { display: none; }
+  .footer-note {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+    color: var(--ink-muted);
+    text-align: center;
+  }
+  .footer-note a { color: var(--accent); text-decoration: none; }
+  @media print {
+    body { background: white; }
+    .container { padding: 20px; max-width: 100%; }
+    section { page-break-inside: avoid; margin-bottom: 30px; }
+    [contenteditable]:hover { background: transparent; }
+  }
+  @media (max-width: 700px) {
+    .container { padding: 40px 24px; }
+    .pricing-block, .pressure-grid, .compare-grid { grid-template-columns: 1fr; }
+    .ve-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body data-mode="{{MODE}}">
+<div class="container">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="label">Grand Slam Offer</div>
+    <h1 contenteditable="true">{{OFFER_NAME}}</h1>
+    <p class="tagline" contenteditable="true">{{TAGLINE}}</p>
+    <div class="avatar-line">For <strong contenteditable="true">{{AVATAR}}</strong></div>
+  </header>
+
+  <!-- DREAM OUTCOME -->
+  <section>
+    <div class="label">The Promise</div>
+    <h2>Dream Outcome</h2>
+    <div class="dream-callout">
+      <p class="text" contenteditable="true">{{DREAM_OUTCOME}}</p>
+    </div>
+  </section>
+
+  <!-- VALUE STACK -->
+  <section>
+    <div class="label">What You Get</div>
+    <h2>The Value Stack</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 65%">Bundle</th>
+          <th style="width: 35%; text-align: right">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{STACK_ROWS}}
+        <tr class="total-row">
+          <td class="total-label">Total Value</td>
+          <td class="total-amount" style="text-align: right" contenteditable="true">{{STACK_TOTAL}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PRICING -->
+  <section>
+    <div class="label">Your Investment</div>
+    <h2>Price</h2>
+    <div class="pricing-block">
+      <div class="stack-side">
+        <div class="label" style="color: var(--ink-muted)">Total Value</div>
+        <div class="num" contenteditable="true">{{STACK_TOTAL}}</div>
+      </div>
+      <div class="price-side" style="text-align: right">
+        <div class="label" style="color: var(--accent)">Your Price Today</div>
+        <div class="num" contenteditable="true">{{PRICE}}</div>
+        <div class="terms" contenteditable="true">{{PRICE_TERMS}}</div>
+      </div>
+      <p class="rationale" contenteditable="true">{{PRICE_RATIONALE}}</p>
+    </div>
+  </section>
+
+  <!-- GUARANTEE -->
+  <section>
+    <div class="guarantee-block">
+      <div class="label">Your Risk → Zero</div>
+      <div class="type-tag" contenteditable="true">{{GUARANTEE_TYPE}}</div>
+      <h2 contenteditable="true">{{GUARANTEE_NAME}}</h2>
+      <p class="formula" contenteditable="true">{{GUARANTEE_FORMULA}}</p>
+    </div>
+  </section>
+
+  <!-- SCARCITY + URGENCY -->
+  <section>
+    <div class="label">Why Now</div>
+    <h2>Scarcity &amp; Urgency</h2>
+    <div class="pressure-grid">
+      <div class="pressure-card">
+        <div class="type">Scarcity · <span contenteditable="true">{{SCARCITY_TYPE}}</span></div>
+        <p class="text" contenteditable="true">{{SCARCITY_TEXT}}</p>
+      </div>
+      <div class="pressure-card">
+        <div class="type">Urgency · <span contenteditable="true">{{URGENCY_TYPE}}</span></div>
+        <p class="text" contenteditable="true">{{URGENCY_TEXT}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BONUSES -->
+  <section>
+    <div class="label">Plus, When You Act Now</div>
+    <h2>Bonuses</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 35%">Bonus</th>
+          <th style="width: 45%">What It Solves</th>
+          <th style="width: 20%; text-align: right">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{BONUS_ROWS}}
+        <tr class="total-row">
+          <td class="total-label" colspan="2">Total Bonus Value</td>
+          <td class="total-amount" style="text-align: right" contenteditable="true">{{BONUS_TOTAL}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- VALUE EQUATION SCORE -->
+  <section>
+    <div class="label">Diagnostic</div>
+    <h2>Value Equation Score</h2>
+    <p style="color: var(--ink-soft); font-size: 14px; margin-bottom: 24px;">
+      Score per Hormozi's 0/0.5/1 grading. Maximize the top, minimize the bottom.
+    </p>
+    <div class="ve-grid">
+      <div class="ve-cell s-{{VE_DREAM_CLASS}}">
+        <div class="name">Dream Outcome</div>
+        <div class="arrow">↑ maximize</div>
+        <div class="score" contenteditable="true">{{VE_DREAM}}</div>
+      </div>
+      <div class="ve-cell s-{{VE_LIKELIHOOD_CLASS}}">
+        <div class="name">Perceived Likelihood</div>
+        <div class="arrow">↑ maximize</div>
+        <div class="score" contenteditable="true">{{VE_LIKELIHOOD}}</div>
+      </div>
+      <div class="ve-cell s-{{VE_TIME_CLASS}}">
+        <div class="name">Time Delay</div>
+        <div class="arrow">↓ minimize</div>
+        <div class="score" contenteditable="true">{{VE_TIME}}</div>
+      </div>
+      <div class="ve-cell s-{{VE_EFFORT_CLASS}}">
+        <div class="name">Effort &amp; Sacrifice</div>
+        <div class="arrow">↓ minimize</div>
+        <div class="score" contenteditable="true">{{VE_EFFORT}}</div>
+      </div>
+    </div>
+    <div class="ve-total">
+      <div class="num" contenteditable="true">{{VE_TOTAL}} / 4</div>
+      <div class="grade" contenteditable="true">{{VE_GRADE}}</div>
+    </div>
+    <div class="verdict {{VERDICT_CLASS}}" contenteditable="true">{{VERDICT_TEXT}}</div>
+  </section>
+
+  <!-- CRITIQUE MODE: ORIGINAL vs REWRITE -->
+  <section class="critique-only">
+    <div class="label">Critique</div>
+    <h2>Original vs. Rewrite</h2>
+    {{COMPARE_BLOCKS}}
+  </section>
+
+  <!-- CRITIQUE MODE: THREE FIXES -->
+  <section class="critique-only">
+    <div class="label">Action Plan</div>
+    <h2>If You Can Only Fix Three Things</h2>
+    <div class="fixes-list">
+      <ol>
+        {{FIX_ITEMS}}
+      </ol>
+    </div>
+  </section>
+
+  <div class="footer-note">
+    Generated using the $100M Offers framework by Alex Hormozi.<br>
+    All sections are editable — click any text to refine it.
+  </div>
+
+</div>
+</body>
+</html>

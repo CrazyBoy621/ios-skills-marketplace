@@ -1,0 +1,6 @@
+{
+  "name": "hormozi-grand-slam-offer",
+  "description": "Craft or critique a Grand Slam Offer using Alex Hormozi's $100M Offers frameworks: the Value Equation, the 5-step Value Stack, pricing, guarantees, scarcity, urgency, bonuses, and MAGIC naming. Produces an interactive, editable HTML offer artifact.",
+  "version": "1.0.0",
+  "author": { "name": "Shohjahon Rakhmatov" }
+}
