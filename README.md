@@ -7,7 +7,7 @@ A personal Claude Code plugin marketplace.
 
 ## Install (on each machine, once)
 ```
-/plugin marketplace add <your-github-username>/ios-skills-marketplace
+/plugin marketplace add CrazyBoy621/ios-skills-marketplace
 /plugin install swiftui-app-architecture@ios-skills
 ```
 Then ask Claude Code about SwiftUI work and it loads automatically, or invoke explicitly with
